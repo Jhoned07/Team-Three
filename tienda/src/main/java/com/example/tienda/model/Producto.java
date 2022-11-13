@@ -14,31 +14,12 @@ public class Producto {
 	private Double precio;
 	private String talla;
 
-	public String getTalla() {
-		return talla;
-	}
-
-	public void setTalla(String talla) {
-		this.talla = talla;
-	}
-
-	private Long categoriaId;
-	private Long estado;
-
-	public Long getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Long estado) {
-		this.estado = estado;
-	}
-
-	public Producto(Long id, String descripcion, Double precio, Long categoriaId) {
+	public Producto(Long id, String descripcion, Double precio, String talla) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.precio = precio;
-		this.categoriaId = categoriaId;
+		this.talla = talla;
 	}
 
 	public Long getId() {
@@ -65,17 +46,17 @@ public class Producto {
 		this.precio = precio;
 	}
 
-	public Long getCategoriaId() {
-		return categoriaId;
+	public String getTalla() {
+		return talla;
 	}
 
-	public void setCategoriaId(Long categoriaId) {
-		this.categoriaId = categoriaId;
+	public void setTalla(String talla) {
+		this.talla = talla;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoriaId, descripcion, estado, id, precio);
+		return Objects.hash(descripcion, id, precio, talla);
 	}
 
 	@Override
@@ -87,14 +68,12 @@ public class Producto {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		return Objects.equals(categoriaId, other.categoriaId) && Objects.equals(descripcion, other.descripcion)
-				&& Objects.equals(estado, other.estado) && Objects.equals(id, other.id)
-				&& Objects.equals(precio, other.precio);
+		return Objects.equals(descripcion, other.descripcion) && Objects.equals(id, other.id)
+				&& Objects.equals(precio, other.precio) && Objects.equals(talla, other.talla);
 	}
 
 	@Override
 	public String toString() {
-		return "Productos [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", categoriaId="
-				+ categoriaId + "]";
+		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", talla=" + talla + "]";
 	}
 }

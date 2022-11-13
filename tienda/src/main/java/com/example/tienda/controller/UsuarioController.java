@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tienda.model.Usuario;
-import com.example.tienda.services.UsuarioServicesImpl;
+import com.example.tienda.services.UsuarioServices;
 
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 	@Autowired
-	private UsuarioServicesImpl service;
+	private UsuarioServices service;
 
 	@PostMapping
 	public ResponseEntity<?> createUsuario(@RequestBody Usuario usuario) {
