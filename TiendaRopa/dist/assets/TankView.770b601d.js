@@ -1,0 +1,1 @@
+import{V as a}from"./VisualizarProductos.4dfe95fd.js";import{_ as r,b as t,o as s,e}from"./index.f81c978b.js";const n={data(){return{}},components:{VisualizarProductos:a}};function c(i,p,u,_,d,m){const o=t("VisualizarProductos");return s(),e(o,{categoria:"Tank"})}const V=r(n,[["render",c]]);export{V as default};

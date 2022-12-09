@@ -17,11 +17,11 @@ public class UsuarioServicesImpl implements UsuarioServices {
 	@Override
 	public Usuario createUser(Usuario usuario) {
 		return repositorio.insert(usuario);
-	}
 
+	}
 	@Override
-	public Optional<Usuario> findById(Long id) {
-		return repositorio.findById(id);
+	public Optional<Usuario>  findByCorreo(String correo) {
+		return repositorio.findByCorreo(correo);
 	}
 
 	@Override
@@ -29,10 +29,10 @@ public class UsuarioServicesImpl implements UsuarioServices {
 		if (usuario == null) {
 			return null;
 		}
-		if (usuario.getId() == null) {
+		if (usuario.getCorreo() == null) {
 			return null;
 		}
-		Optional<Usuario> usuarioExistente = repositorio.findById(usuario.getId());
+		Optional<Usuario> usuarioExistente = repositorio.findByCorreo(usuario.getCorreo());
 		if (usuarioExistente.isPresent()) {
 			return repositorio.save(usuario);
 
@@ -42,9 +42,9 @@ public class UsuarioServicesImpl implements UsuarioServices {
 	}
 
 	@Override
-	public Boolean deleteUsuario(Long id) {
+	public Boolean  deleteUsuario(String correo) {
 
-		Optional<Usuario> usuarioExistente = repositorio.findById(id);
+		Optional<Usuario> usuarioExistente = repositorio.findByCorreo(correo);
 		if (usuarioExistente.isPresent()) {
 			repositorio.delete(usuarioExistente.get());
 			return true;
@@ -67,8 +67,8 @@ public class UsuarioServicesImpl implements UsuarioServices {
 		return repositorio.findByTipoUsuario(tipoUsuario);
 	}
 
-	@Override
-	public Optional<Usuario> findByCorreo(String correo) {
-		return repositorio.findByCorreo(correo);
-	}
+
+
+
+
 }

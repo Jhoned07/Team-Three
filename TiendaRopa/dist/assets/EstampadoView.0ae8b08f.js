@@ -1,0 +1,1 @@
+import{V as a}from"./VisualizarProductos.4dfe95fd.js";import{_ as t,b as s,o as r,e}from"./index.f81c978b.js";const c={data(){return{}},components:{VisualizarProductos:a}};function n(p,i,u,_,d,m){const o=s("VisualizarProductos");return r(),e(o,{categoria:"Estampado"})}const V=t(c,[["render",n]]);export{V as default};

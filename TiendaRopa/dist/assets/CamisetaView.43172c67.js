@@ -1,0 +1,1 @@
+import{V as a}from"./VisualizarProductos.4dfe95fd.js";import{_ as t,b as s,o as e,e as r}from"./index.f81c978b.js";const c={data(){return{}},components:{VisualizarProductos:a}};function n(i,p,u,_,m,d){const o=s("VisualizarProductos");return e(),r(o,{categoria:"Camiseta"})}const V=t(c,[["render",n]]);export{V as default};

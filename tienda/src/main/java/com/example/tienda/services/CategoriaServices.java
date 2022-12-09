@@ -20,4 +20,6 @@ public interface CategoriaServices {
 	
 	public String eliminarCategoria(Long id);
 	
+	public Optional<Categoria> consultarCategoriaNombre(String nombre);
+	
 }

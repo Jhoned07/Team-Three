@@ -5,39 +5,22 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.tienda.util.ERol;
 @Document("usuarios")
 public class Usuario {
 
 	@Id
-	private Long id;
-	private String nombre;
 	private String correo;
+	private String nombre;
 	private String contrasena;
-	private Integer tipoCliente;
+	private ERol[] roles;
 
-	public Usuario(Long id, String nombre, String correo, String contrasena, Integer tipoCliente) {
+	public Usuario(String correo, String nombre, String contrasena, ERol[] roles) {
 		super();
-		this.id = id;
-		this.nombre = nombre;
 		this.correo = correo;
-		this.contrasena = contrasena;
-		this.tipoCliente = tipoCliente;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
 		this.nombre = nombre;
+		this.contrasena = contrasena;
+		this.roles = roles;
 	}
 
 	public String getCorreo() {
@@ -48,6 +31,14 @@ public class Usuario {
 		this.correo = correo;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String getContrasena() {
 		return contrasena;
 	}
@@ -56,17 +47,17 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
-	public Integer getTipoCliente() {
-		return tipoCliente;
+	public ERol[] getRoles() {
+		return roles;
 	}
 
-	public void setTipoCliente(Integer tipoCliente) {
-		this.tipoCliente = tipoCliente;
+	public void setRoles(ERol[] roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(contrasena, correo, id, nombre, tipoCliente);
+		return Objects.hash(contrasena, correo, nombre);
 	}
 
 	@Override
@@ -79,14 +70,7 @@ public class Usuario {
 			return false;
 		Usuario other = (Usuario) obj;
 		return Objects.equals(contrasena, other.contrasena) && Objects.equals(correo, other.correo)
-				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(tipoCliente, other.tipoCliente);
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", contrasena=" + contrasena
-				+ ", tipoCliente=" + tipoCliente + "]";
+				&& Objects.equals(nombre, other.nombre);
 	}
 
 }

@@ -13,13 +13,23 @@ public class Producto {
 	private String descripcion;
 	private Double precio;
 	private String talla;
+	private String categoria;
 
-	public Producto(Long id, String descripcion, Double precio, String talla) {
+	public Producto(Long id, String descripcion, Double precio, String talla, String categoria) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.talla = talla;
+		this.categoria = categoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public Long getId() {
@@ -56,7 +66,7 @@ public class Producto {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(descripcion, id, precio, talla);
+		return Objects.hash(categoria, descripcion, id, precio, talla);
 	}
 
 	@Override
@@ -68,12 +78,14 @@ public class Producto {
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		return Objects.equals(descripcion, other.descripcion) && Objects.equals(id, other.id)
-				&& Objects.equals(precio, other.precio) && Objects.equals(talla, other.talla);
+		return Objects.equals(categoria, other.categoria) && Objects.equals(descripcion, other.descripcion)
+				&& Objects.equals(id, other.id) && Objects.equals(precio, other.precio)
+				&& Objects.equals(talla, other.talla);
 	}
 
 	@Override
 	public String toString() {
-		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", talla=" + talla + "]";
+		return "Producto [id=" + id + ", descripcion=" + descripcion + ", precio=" + precio + ", talla=" + talla
+				+ ", categoria=" + categoria + "]";
 	}
 }

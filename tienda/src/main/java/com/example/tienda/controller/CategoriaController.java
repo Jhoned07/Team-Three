@@ -1,5 +1,7 @@
 package com.example.tienda.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,23 @@ public class CategoriaController {
 	
 	@PostMapping
 	public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.CREATED).body(servicio.crearCategoria(categoria));
+		if (categoria == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		if (categoria.getId() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		if (categoria.getNombre() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		Optional<Categoria> categoriaIdExistente = servicio.consultarCategoriaId(categoria.getId());
+		Optional<Categoria> categoriaNombreExistente = servicio.consultarCategoriaNombre(categoria.getNombre());
+		if (categoriaIdExistente.isEmpty() && categoriaNombreExistente.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(servicio.crearCategoria(categoria));
+		}
+		else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
 	}
 	
 	@DeleteMapping("/{id}")

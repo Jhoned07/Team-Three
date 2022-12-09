@@ -71,4 +71,9 @@ public class CategoriaServicesImpl implements CategoriaServices {
 		}
 		return "La Categoria no puede ser eliminada";
 	}
+
+	@Override
+	public Optional<Categoria> consultarCategoriaNombre(String nombre) {
+		return repositorio.consultarCategoriaNombre(nombre);
+	} 
 }

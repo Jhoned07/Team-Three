@@ -14,26 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tienda.model.Usuario;
-import com.example.tienda.services.UsuarioServices;
+import com.example.tienda.services.UsuarioServicesImpl;
 
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 	@Autowired
-	private UsuarioServices service;
+	private UsuarioServicesImpl service;
 
 	@PostMapping
 	public ResponseEntity<?> createUsuario(@RequestBody Usuario usuario) {
 		if (usuario == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-		if (usuario.getId() == null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
 		if (usuario.getCorreo() == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
-		Optional<Usuario> usuarioExistente = service.findById(usuario.getId());
+		Optional<Usuario> usuarioExistente = service.findByCorreo(usuario.getCorreo());
 		Optional<Usuario> usuarioExist = service.findByCorreo(usuario.getCorreo());
 		if (usuarioExistente.isEmpty() && usuarioExist.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(service.createUser(usuario));
@@ -57,14 +54,15 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
-	@DeleteMapping("/{id}")
-	public 	ResponseEntity<?> borrarUsuario(@PathVariable Long id) {
-		Optional<Usuario> encontrado = service.findById(id);
+	@DeleteMapping("/{correo}")
+	public 	ResponseEntity<?> borrarUsuario(@PathVariable String correo) {
+		Optional<Usuario> encontrado = service.findByCorreo(correo);
 		if(encontrado.isPresent()) {
 			;
-			return ResponseEntity.status(HttpStatus.OK).body(service.deleteUsuario(id));
+			return ResponseEntity.status(HttpStatus.OK).body(service.deleteUsuario(correo));
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 
 }
+
